@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAGFLOW - Control-M JSON Visualizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1><span class="icon">📊</span> DAGFLOW</h1>
+        <p>Control-M JSON Workflow Visualizer</p>
+    </header>
+    <div class="container">
+        <h1>Control-M JSON Uploader</h1>
+        <input type="file" id="jsonFileInput" accept=".json">
+        <div id="content">
+            <div id="folderStructure"></div>
+            <div id="jobDetails"></div>
+        </div>
+    </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

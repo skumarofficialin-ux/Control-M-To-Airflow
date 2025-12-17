@@ -1,0 +1,76 @@
+{
+  "Defaults": {
+    "Application": "SampleApp",
+    "SubApplication": "SampleSubApp"
+  },
+  "SampleApp_Flow": {
+    "Type": "Folder",
+    "RunAs": "USERNAME",
+    "Host": "HOST",
+    "jobs": [
+      {
+        "Name": "Data_Extract",
+        "Type": "Job:Command",
+        "Command": "echo Extracting data",
+        "Description": "Extract data from source",
+        "Schedule": "Daily at 5:00 AM",
+        "Events": {
+          "In": ["Source_Available"],
+          "Out": ["Extract_Complete"]
+        },
+        "Conditions": {
+          "In": [],
+          "Out": ["Data_Extracted"]
+        }
+      },
+      {
+        "Name": "Data_Transform",
+        "Type": "Job:Command",
+        "Command": "echo Transforming data",
+        "Description": "Transform extracted data",
+        "Schedule": "Daily at 5:30 AM",
+        "Events": {
+          "In": ["Extract_Complete"],
+          "Out": ["Transform_Done"]
+        },
+        "Conditions": {
+          "In": ["Data_Extracted"],
+          "Out": ["Data_Transformed"]
+        },
+        "DependsOn": ["Data_Extract"]
+      },
+      {
+        "Name": "ETL_Process",
+        "Type": "Job:Command",
+        "Command": "echo Running ETL",
+        "Description": "Main ETL process",
+        "Schedule": "Daily at 6:00 AM",
+        "Events": {
+          "In": ["Transform_Done"],
+          "Out": ["ETL_Complete"]
+        },
+        "Conditions": {
+          "In": ["Data_Transformed"],
+          "Out": ["ETL_Done"]
+        },
+        "DependsOn": ["Data_Transform"]
+      },
+      {
+        "Name": "Report_Generation",
+        "Type": "Job:Command",
+        "Command": "echo Generating report",
+        "Description": "Generate final report",
+        "Schedule": "Daily at 7:00 AM",
+        "Events": {
+          "In": ["ETL_Complete"],
+          "Out": ["Report_Ready"]
+        },
+        "Conditions": {
+          "In": ["ETL_Done"],
+          "Out": ["Report_Generated"]
+        },
+        "DependsOn": ["ETL_Process"]
+      }
+    ]
+  }
+}

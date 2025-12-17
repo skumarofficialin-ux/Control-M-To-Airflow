@@ -1,0 +1,207 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    font-size: 1.2em;
+    margin-right: 10px;
+}
+
+header p {
+    margin: 5px 0 0 0;
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#content {
+    display: flex;
+    margin-top: 20px;
+}
+
+#folderStructure {
+    flex: 1;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+#jobDetails {
+    flex: 2;
+    padding: 10px;
+}
+
+.tree {
+    list-style: none;
+    padding-left: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tree li {
+    margin: 8px 0;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.tree li:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+.tree li:before {
+    content: "▶";
+    cursor: pointer;
+    position: absolute;
+    left: -15px;
+    top: 0;
+    color: #007bff;
+    font-size: 12px;
+    transition: transform 0.2s ease;
+}
+
+.tree li.expanded:before {
+    content: "▼";
+    transform: rotate(0deg);
+}
+
+.tree .job {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.tree .job:hover {
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+}
+
+.tree li ul {
+    display: none;
+    margin-left: 10px;
+    border-left: 2px solid #e9ecef;
+    padding-left: 15px;
+    animation: slideDown 0.3s ease;
+}
+
+.tree li.expanded ul {
+    display: block;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 1000px;
+    }
+}
+
+.tree li.has-children .job:before {
+    content: "📁";
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+.tree li:not(.has-children) .job:before {
+    content: "⚙️";
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+#dependencyGraph {
+    width: 100%;
+    min-height: 400px;
+    height: auto;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+.legend {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.legend div {
+    margin: 5px;
+}
+
+.fit-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+}
+
+.fit-button:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transform: translateY(-1px);
+}
+
+.tooltip {
+    font-size: 12px;
+}
